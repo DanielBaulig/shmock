@@ -1,9 +1,13 @@
 {
   "name": "shmock",
-  "module": "index.ts",
+  "module": "src/index.ts",
+  "version": "0.0.1",
   "type": "module",
+  "scripts": {
+    "test": "PATH=.shmocks:$PATH bun test"
+  },
   "exports": {
-    ".": "./index.ts"
+    ".": "./src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

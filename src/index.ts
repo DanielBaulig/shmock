@@ -96,7 +96,7 @@ export async function mount<F extends (...args: any[]) => any>(name: string, moc
   try {
     await fs.access(`${shmockDir}/${name}`);
   } catch(e) {
-    await fs.link('shmock-client.ts', `${shmockDir}/${name}`);
+    await fs.link('src/shmock-client.ts', `${shmockDir}/${name}`);
   }
   return mock;
 }

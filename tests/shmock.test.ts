@@ -1,4 +1,4 @@
-import { mount, unmountAll, Console } from '../index.ts';
+import { mount, unmountAll, Console } from '../src/index.ts';
 import { $ } from 'bun';
 import { afterAll, mock, describe, it, expect } from 'bun:test';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@dev0/shmock",
+  "name": "shmock",
   "module": "src/index.ts",
   "version": "0.0.1",
   "type": "module",

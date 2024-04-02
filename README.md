@@ -16,24 +16,22 @@ bun test invocation. E.g. `PATH=.shmocks:$PATH bun test`
 
 ```javascript
 import { $ } from 'bun';
-import { describe, test, mock } from 'bun:test';
+import { afterAll, test, mock } from 'bun:test';
 import { mount, unmountAll, Console } from 'shmock';
 
-describe('Code using shell programs', () => {
-  test('my code calling a shell program', async () => {
-    const progMock = await mount('prog', mock((console, ...args) => {
-      if (!args.length) {
-        console.error('No arguments provided');
-        return 1;
-      }
-      console.log('You provided the following arguments to prog', args);
-    }));
-    expect(async () => await $`prog`.quiet().throws(true)).toThrow();
-    const output = await $`prog one two`.text();
-    expect(progMock).toHaveBeenCalledWith(expect.any(Console), 'one', 'two');
-    expect(output.trim()).toMatch('You provided the following arguments to
+test('my code calling a shell program', async () => {
+  const progMock = await mount('prog', mock((console, ...args) => {
+    if (!args.length) {
+      console.error('No arguments provided');
+      return 1;
+    }
+    console.log('You provided the following arguments to prog', args);
+  }));
+  expect(async () => await $`prog`.quiet().throws(true)).toThrow();
+  const output = await $`prog one two`.text();
+  expect(progMock).toHaveBeenCalledWith(expect.any(Console), 'one', 'two');
+  expect(output.trim()).toMatch('You provided the following arguments to
 prog');
-  });
 });
 
 afterAll(async () => {

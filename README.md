@@ -21,7 +21,7 @@ import { mount, unmountAll, Console } from 'shmock';
 
 describe('Code using shell programs', () => {
   test('my code calling a shell program', async () => {
-    const progMock = mount('prog', mock((console, ...args) => {
+    const progMock = await mount('prog', mock((console, ...args) => {
       if (!args.length) {
         console.error('No arguments provided');
         return 1;

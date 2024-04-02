@@ -27,11 +27,18 @@ test('my code calling a shell program', async () => {
     }
     console.log('You provided the following arguments to prog', args);
   }));
-  expect(async () => await $`prog`.quiet().throws(true)).toThrow();
+  expect(
+    async () => await $`prog`.quiet().throws(true)
+  ).toThrow();
   const output = await $`prog one two`.text();
-  expect(progMock).toHaveBeenCalledWith(expect.any(Console), 'one', 'two');
-  expect(output.trim()).toMatch('You provided the following arguments to
-prog');
+  expect(progMock).toHaveBeenCalledWith(
+    expect.any(Console),
+    'one',
+    'two',
+  );
+  expect(
+    output.trim()
+  ).toMatch('You provided the following arguments to prog');
 });
 
 afterAll(async () => {

@@ -111,7 +111,7 @@ export async function unmount(name: string) {
 }
 
 export async function unmountAll() {
-  for await (const mock of mocks.keys()) {
-    await unmount(mock);
-  }
+  await Promise.all(
+    Array.from(mocks.keys()).map(unmount)
+  );
 }
